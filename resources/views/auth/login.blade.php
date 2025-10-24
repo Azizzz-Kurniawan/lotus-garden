@@ -83,7 +83,7 @@
 
         {{-- Menggunakan route dari controller sebelumnya, pastikan namanya 'admin.login' atau sesuaikan --}}
         {{-- Jika di web.php kamu tidak menamainya, gunakan url('/admin/login') --}}
-        <form method="POST" action="{{ url('/admin/login') }}">
+        <form method="POST" action="{{ url('/') }}">
             @csrf
             <div class="mb-3">
                 {{-- DIUBAH MENJADI USERNAME --}}
