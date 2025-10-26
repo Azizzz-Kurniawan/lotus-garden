@@ -86,7 +86,6 @@
         <form method="POST" action="{{ url('/') }}">
             @csrf
             <div class="mb-3">
-                {{-- DIUBAH MENJADI USERNAME --}}
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"
                     name="username" placeholder="Enter username" value="{{ old('username') }}" required autofocus>
