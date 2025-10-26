@@ -3,6 +3,8 @@
 @section('title', 'Terima Kasih!')
 
 @section('content')
+    <meta http-equiv="refresh" content="7;url=about:blank" />
+
     <div class="thankyou-container">
         <div class="thankyou-card">
             <!-- Icon Checkmark -->

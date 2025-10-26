@@ -6,20 +6,25 @@
 @section('content')
     <div class="container py-3">
         {{-- Instruksi singkat --}}
+        <h1 class="text-center" style="font-size: 1.75rem; font-weight: 500; margin-bottom: 1rem;">
+            Gimana Kunjunganmu ke Lotus Garden?
+        </h1>
+
         <p class="text-center mb-4" style="font-size: 1rem; color: #555;">
-            Pilih kategori feedback yang ingin Anda isi. Tekan satu kategori untuk memulai.
+            Masukanmu penting banget buat kami. Yuk, pilih satu topik di bawah ini buat mulai.
         </p>
 
         {{-- Kategori --}}
         <div class="category-container">
             @if ($categories->isEmpty())
-            <p class="empty-message">Tidak ada kategori feedback yang tersedia saat ini.</p>
+                <p class="empty-message">Tidak ada kategori feedback yang tersedia saat ini.</p>
             @else
-            @foreach ($categories as $category)
-                <a href="{{ route('feedback.questions', $category->id) }}" class="category-card" style="text-decoration: none;">
-                <span class="category-title">{{ $category->name }}</span>
-                </a>
-            @endforeach
+                @foreach ($categories as $category)
+                    <a href="{{ route('feedback.questions', $category->id) }}" class="category-card"
+                        style="text-decoration: none;">
+                        <span class="category-title">{{ $category->name }}</span>
+                    </a>
+                @endforeach
             @endif
         </div>
     </div>

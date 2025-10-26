@@ -1,7 +1,8 @@
 <?php
-
+// config/questionCategory.php
 return [
-    // Jam global untuk otomatis aktif (24 jam)
-    'active_hour' => 7, // jam target untuk kategori aktif
-    'active_minute' => 20, // jam target untuk kategori aktif
+    'active_hour' => (int) env('CATEGORY_ACTIVE_HOUR', 10),
+    'active_minute' => (int) env('CATEGORY_ACTIVE_MINUTE', 0),
+    'inactive_hour' => (int) env('CATEGORY_INACTIVE_HOUR', 23),
+    'inactive_minute' => (int) env('CATEGORY_INACTIVE_MINUTE', 0),
 ];

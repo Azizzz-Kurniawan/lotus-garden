@@ -9,7 +9,7 @@
             <a href="{{ route('question-categories.create') }}" class="btn btn-primary">➕ Tambah Kategori Baru</a>
         </div>
 
-        {{-- Alerts --}}
+        {{-- Alerts (Tidak ada perubahan) --}}
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -41,30 +41,39 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td class="text-center">
-                                        @if ($category->status === 'active')
-                                            <span class="badge bg-success">Aktif</span>
-                                        @elseif ($category->status === 'pending')
-                                            <span class="badge bg-warning text-dark">Pending</span>
-                                        @else
-                                            <span class="badge bg-secondary">Nonaktif</span>
-                                        @endif
+                                        {{-- DIUBAH: Menggunakan @switch dan Enum untuk kebersihan --}}
+                                        @switch($category->status)
+                                            @case(\App\Enums\CategoryStatus::ACTIVE)
+                                                <span class="badge bg-success">Aktif</span>
+                                            @break
+
+                                            @case(\App\Enums\CategoryStatus::PENDING)
+                                                <span class="badge bg-warning text-dark">Pending</span>
+                                            @break
+
+                                            @case(\App\Enums\CategoryStatus::INACTIVE)
+                                                <span class="badge bg-secondary">Nonaktif</span>
+                                            @break
+                                        @endswitch
                                     </td>
                                     <td class="text-center">
-                                        {{-- Tombol Active --}}
-                                        @if ($category->status === 'active')
+                                        {{-- DIUBAH: Tombol Active --}}
+                                        @if ($category->status === \App\Enums\CategoryStatus::ACTIVE)
                                             <form action="{{ route('question-categories.toggle', $category) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
                                                 @method('PATCH')
+
+                                                {{-- DIUBAH: Ganti ke helper baru `isDuringActivePeriod()` --}}
                                                 <button type="submit" class="btn btn-sm btn-warning"
-                                                    {{ $category->isActiveHours() ? 'disabled' : '' }}>
+                                                    {{ $category->isDuringActivePeriod() ? 'disabled' : '' }}>
                                                     Nonaktifkan
                                                 </button>
                                             </form>
                                         @endif
 
-                                        {{-- Tombol Pending --}}
-                                        @if ($category->status === 'pending')
+                                        {{-- DIUBAH: Tombol Pending --}}
+                                        @if ($category->status === \App\Enums\CategoryStatus::PENDING)
                                             <form action="{{ route('question-categories.toggle', $category) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
@@ -73,8 +82,8 @@
                                             </form>
                                         @endif
 
-                                        {{-- Tombol Inactive --}}
-                                        @if ($category->status === 'inactive')
+                                        {{-- DIUBAH: Tombol Inactive --}}
+                                        @if ($category->status === \App\Enums\CategoryStatus::INACTIVE)
                                             <form action="{{ route('question-categories.toggle', $category) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
@@ -95,18 +104,18 @@
                                         @endif
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="text-center text-muted">Belum ada kategori.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted">Belum ada kategori.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- Bootstrap JS untuk alert dismiss --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@endsection
+        {{-- Bootstrap JS (Tidak ada perubahan) --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @endsection

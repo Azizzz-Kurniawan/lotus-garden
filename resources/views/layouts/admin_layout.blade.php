@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - @yield('title')</title>
@@ -165,7 +166,7 @@
 
     <nav class="sidebar">
         <div class="sidebar-logo-row">
-            <img src="{{ asset('image/logo.png') }}" alt="logo">
+            <img src="{{ asset('public/image/logo.png') }}" alt="logo">
             <div class="sidebar-logo-title">
                 <h5 class="m-0">Lotus Garden</h5>
                 <small>Cafe & Steak</small>

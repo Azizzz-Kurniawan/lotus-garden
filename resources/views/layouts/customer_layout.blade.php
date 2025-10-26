@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Customer Page')</title>
@@ -116,7 +117,7 @@
     <header class="header">
         <div class="container header-content">
             <div class="header-logo">
-                <img src="{{ asset('image/logo.png') }}" alt="logo">
+                <img src="{{ asset('public/image/logo.png') }}" alt="logo">
             </div>
             <div class="header-title">
                 <h1>Lotus Garden</h1>
